@@ -33,7 +33,7 @@ function start() {
 
 function renderTask(task, root) {
 	root.empty();
-	root.append($('<button id="next-task">~</button>'));
+	root.append($('<button id="next-task">&#8634;</button>'));
 	for (let i = 1; i <= 5; i++) {
 		root.append(renderValueOrInput(task[i]));
 	}
