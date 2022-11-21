@@ -1,0 +1,21 @@
+body {
+	font-size: 50px;
+}
+
+.value {
+	margin: 5px;
+}
+
+#unknown-value {
+	font-size: 50px;
+	width: 50px;
+	height: 50px;
+}
+
+.wrong {
+	background-color: rgba(255, 146, 146, 0.637);
+}
+
+.correct {
+	background-color: rgba(123, 255, 123, 0.671);
+}
