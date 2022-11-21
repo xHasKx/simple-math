@@ -28,10 +28,12 @@ function start() {
 		}
 	});
 	$('#unknown-value').focus();
+	$("#next-task").click(start);
 }
 
 function renderTask(task, root) {
 	root.empty();
+	root.append($('<button id="next-task">~</button>'));
 	for (let i = 1; i <= 5; i++) {
 		root.append(renderValueOrInput(task[i]));
 	}
