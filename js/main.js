@@ -60,12 +60,14 @@ function makeTask() {
 			return [unknown, '?', operation, known, '=', result];
 		}
 	} else if (operation == '-') {
-		known = randomUpTo(10);
-		result = randomUpTo(10);
 		if (Math.random() >= 0.5) {
+			result = randomUpTo(5);
+			known = 5 + randomUpTo(5);
 			unknown = known - result;
 			return [unknown, known, operation, '?', '=', result];
 		} else {
+			result = randomUpTo(5);
+			known = randomUpTo(5);
 			unknown = known + result;
 			return [unknown, '?', operation, known, '=', result];
 		}
