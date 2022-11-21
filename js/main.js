@@ -7,8 +7,9 @@ $(function() {
 function start() {
 	const root = $('#root');
 	const task = makeTask();
+	console.log('task', task)
 
-	const second = task[0];
+	const unknown = task[0];
 	renderTask(task, root);
 
 	$('#unknown-value').on('input', function(e) {
@@ -18,7 +19,7 @@ function start() {
 		$('#unknown-value').removeClass('correct');
 		if (!strVal || isNaN(val))
 			return;
-		if (val == second) {
+		if (val == unknown) {
 			$('#unknown-value').removeClass('wrong');
 			$('#unknown-value').addClass('correct');
 		} else {
@@ -45,24 +46,30 @@ function renderValueOrInput(value) {
 }
 
 function makeTask() {
-	// const operations = ['+', '-'];
-	const operations = ['+'];
+	const operations = ['+', '-'];
 	const operation = randomChoice(operations);
 
-	const result = 4 + randomUpTo(10 - 4);
-	const known = randomUpTo(result);
-
-	let task;
+	let result, known, unknown;
 	if (operation == '+') {
-		const second = result - known;
+		result = 4 + randomUpTo(10 - 4);
+		known = randomUpTo(result);
+		unknown = result - known;
 		if (Math.random() >= 0.5) {
-			task = [second, known, '+', '?', '=', result];
+			return [unknown, known, operation, '?', '=', result];
 		} else {
-			task = [second, '?', '+', known, '=', result];
+			return [unknown, '?', operation, known, '=', result];
+		}
+	} else if (operation == '-') {
+		known = randomUpTo(10);
+		result = randomUpTo(10);
+		if (Math.random() >= 0.5) {
+			unknown = known - result;
+			return [unknown, known, operation, '?', '=', result];
+		} else {
+			unknown = known + result;
+			return [unknown, '?', operation, known, '=', result];
 		}
 	}
-
-	return task;
 }
 
 function randomUpTo(max) {
@@ -70,5 +77,5 @@ function randomUpTo(max) {
 }
 
 function randomChoice(arr) {
-	return arr[randomUpTo(arr.length - 1)];
+	return arr[randomUpTo(arr.length)];
 }
