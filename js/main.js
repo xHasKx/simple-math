@@ -51,9 +51,13 @@ function makeTask() {
 	const operations = ['+', '-'];
 	const operation = randomChoice(operations);
 
+	const min = 0;
+	const max = 20;
+	const middle = Math.floor((max - min) / 2);
+
 	let result, known, unknown;
 	if (operation == '+') {
-		result = 4 + randomUpTo(10 - 4);
+		result = middle + randomUpTo(max - middle);
 		known = randomUpTo(result);
 		unknown = result - known;
 		if (Math.random() >= 0.5) {
@@ -63,13 +67,13 @@ function makeTask() {
 		}
 	} else if (operation == '-') {
 		if (Math.random() >= 0.5) {
-			result = randomUpTo(5);
-			known = 5 + randomUpTo(5);
+			result = randomUpTo(middle);
+			known = middle + randomUpTo(middle);
 			unknown = known - result;
 			return [unknown, known, operation, '?', '=', result];
 		} else {
-			result = randomUpTo(5);
-			known = randomUpTo(5);
+			result = randomUpTo(middle);
+			known = randomUpTo(middle);
 			unknown = known + result;
 			return [unknown, '?', operation, known, '=', result];
 		}
